@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>learn-three</title>
+    <link rel="stylesheet" href="./css/common.css">
+  </head>
+  <body>
+
+  </body>
+  <script src="./js/three.js" charset="utf-8"></script>
+  <script>
+    let scene = new THREE.Scene();
+    let camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight,0.1,1000);
+    let renderer = new THREE.WebGLRenderer();
+    renderer.setSize( window.innerWidth, window.innerHeight);
+    document.body.appendChild(renderer.domElement);
+
+
+    // add cube(立方体)
+    let geometry = new THREE.SphereGeometry(3,18,12);
+    let texture = new THREE.TextureLoader().load( 'http://7xl4c6.com1.z0.glb.clouddn.com/FricREXutNVP2VRPBJ9KsJ7j_eIY' );
+    // texture.setCrossOrigin('Anonymous');
+    let material = new THREE.MeshBasicMaterial( {
+      map: texture
+    });
+    let cube = new THREE.Mesh( geometry, material );
+    scene.add(cube);
+
+    camera.position.z = 15;
+
+    function animate() {
+    	requestAnimationFrame( animate );
+    	renderer.render( scene, camera );
+      // cube.rotation.x += 0.01;
+      cube.rotation.y += 0.01;
+      // cube.rotation.z += 0.01;
+    }
+    animate();
+
+    for (var i = 0; i < 5; i++) {
+      setTimeout(function() {
+        console.log(i);
+      }, 1000 * i);
+    }
+
+    // add line(添加线)
+    // var material = new THREE.LineBasicMaterial( { color: 0x0000ff } );
+    // var geometry = new THREE.Geometry();
+    // geometry.vertices.push(new THREE.Vector3( -10, 0, 0) );
+    // geometry.vertices.push(new THREE.Vector3( 0, 10, 0) );
+    // geometry.vertices.push(new THREE.Vector3( 10, 0, 0) );
+    // camera.position.set (0,0,100);
+    // camera.lookAt(0,0,0);
+    //
+    // var line = new THREE.Line( geometry, material );
+    // scene.add( line );
+    // renderer.render( scene, camera );
+
+
+
+  </script>
+</html>
